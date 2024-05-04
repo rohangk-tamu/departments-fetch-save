@@ -1,0 +1,17 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: Spring-boot-tutorial
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: my-secret-pw
+    url: jdbc:mysql://localhost:3306/hello
+    username: root
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
