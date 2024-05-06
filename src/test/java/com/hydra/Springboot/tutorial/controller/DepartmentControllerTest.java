@@ -6,6 +6,8 @@ import com.hydra.Springboot.tutorial.service.DepartmentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(DepartmentController.class)
 class DepartmentControllerTest {
 
+    private static final Logger log = LoggerFactory.getLogger(DepartmentControllerTest.class);
     @Autowired
     private MockMvc mockMvc;
 
@@ -49,7 +52,6 @@ class DepartmentControllerTest {
 
         Mockito.when(departmentService.saveDepartment(inputDepartment))
                 .thenReturn(department);
-
         mockMvc.perform(post("/departments")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\n" +

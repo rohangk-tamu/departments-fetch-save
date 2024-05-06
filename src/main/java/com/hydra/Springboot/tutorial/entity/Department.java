@@ -1,9 +1,6 @@
 package com.hydra.Springboot.tutorial.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,8 +14,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Department {
 
+    @TableGenerator(
+            name = "departmentTableGenerator",
+            allocationSize = 1,
+            initialValue = 0)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(
+            strategy=GenerationType.TABLE,
+            generator="departmentTableGenerator")
     private Long departmentId;
 
     @NotBlank(message = "Please add a department name")
